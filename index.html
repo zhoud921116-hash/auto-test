@@ -363,23 +363,6 @@
       line-height: 1.6;
     }
 
-    .step-capabilities {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.75rem;
-    }
-
-    .step-cap-tag {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--coral);
-      background: rgba(245, 56, 56, 0.08);
-      padding: 0.2rem 0.65rem;
-      border-radius: 50px;
-      border: 1px solid rgba(245, 56, 56, 0.15);
-    }
-
     /* ── Agent Cards ── */
     .agent-card {
       background: #fff;
@@ -557,10 +540,6 @@
       margin-bottom: 0.5rem;
     }
 
-    .workflow--hero .step-capabilities {
-      margin-top: 0.85rem;
-    }
-
     #agents .section-header--left {
       margin-bottom: 1.25rem !important;
     }
@@ -645,7 +624,7 @@
                   <div class="icon-wrap">
                     <svg viewBox="0 0 24 24" width="28" height="28" fill="#F53838"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                   </div>
-                  <div class="num">6</div>
+                  <div class="num">7</div>
                   <div class="label">闭环步骤</div>
                 </div>
               </div>
@@ -675,54 +654,50 @@
             <div class="workflow-step">
               <div class="step-num">1</div>
               <div class="step-content">
-                <h4>用例输入</h4>
+                <h4>需求输入</h4>
                 <p>基于测试用例文档或业务需求描述完成需求分析，推导生成明确可执行的测试意图。</p>
-                <div class="step-capabilities">
-                  <span class="step-cap-tag">自然语言转自动化用例</span>
-                </div>
               </div>
             </div>
             <div class="workflow-step">
               <div class="step-num">2</div>
               <div class="step-content">
-                <h4>Agent 调度任务执行顺序</h4>
-                <p>主 Agent 根据任务类型与依赖关系，编排各阶段的执行次序。</p>
+                <h4>任务编排</h4>
+                <p>主 Agent 按任务类型与阶段依赖，调度分析、设计、执行等子流程。</p>
               </div>
             </div>
             <div class="workflow-step">
               <div class="step-num">3</div>
               <div class="step-content">
-                <h4>Subagent 驱动各阶段任务</h4>
-                <p>子 Agent 分别负责分析、设计、编码等专业子任务，边界清晰。</p>
+                <h4>分阶段执行</h4>
+                <p>Subagent 各司其职：分析定规格、探索定方案、编码与验证，边界清晰。</p>
               </div>
             </div>
             <div class="workflow-step">
               <div class="step-num">4</div>
               <div class="step-content">
-                <h4>加载 Skills 协助 AI 学习领域知识</h4>
-                <p>通过 Skills 注入 HIS 等业务领域知识，提升生成质量与准确性。</p>
+                <h4>领域知识注入</h4>
+                <p>按阶段加载 Skills，注入 HIS 组件契约、探索规范与执行门禁，提升生成质量。</p>
               </div>
             </div>
             <div class="workflow-step">
               <div class="step-num">5</div>
               <div class="step-content">
-                <h4>调用 MCP 进行浏览器视觉定位</h4>
-                <p>借助 MCP 工具链操控浏览器，以视觉智能定位识别 UI 元素、摆脱脆弱选择器依赖，自主探索页面操作路径，无需人工逐步录制即可完成流程覆盖。</p>
-                <div class="step-capabilities">
-                  <span class="step-cap-tag">视觉智能定位</span>
-                  <span class="step-cap-tag">自主探索与执行</span>
-                </div>
+                <h4>浏览器探索</h4>
+                <p>通过 MCP 操控浏览器，自主探索页面结构与操作路径，辅以视觉定位，减少脆弱选择器依赖。</p>
               </div>
             </div>
             <div class="workflow-step">
               <div class="step-num">6</div>
               <div class="step-content">
+                <h4>脚本生成</h4>
+                <p>以业务意图驱动探测实现，生成抗震 Playwright 测试脚本，并通过专项回归验证后交付。</p>
+              </div>
+            </div>
+            <div class="workflow-step">
+              <div class="step-num">7</div>
+              <div class="step-content">
                 <h4>反馈回流</h4>
-                <p>执行与回归结论自动回流上游，驱动脚本修复与持续迭代。运行中应对重试、等待、弹框等常见异常；对失败场景做断言校验与根因分析，缩短问题定位时间。</p>
-                <div class="step-capabilities">
-                  <span class="step-cap-tag">异常智能处理</span>
-                  <span class="step-cap-tag">智能断言与分析</span>
-                </div>
+                <p>执行与回归结论自动回流上游，驱动脚本修复与持续迭代；运行中处理重试、等待、弹框等异常，对失败场景做断言校验与根因分析。</p>
               </div>
             </div>
           </div>
