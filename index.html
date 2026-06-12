@@ -195,50 +195,6 @@
       white-space: nowrap;
     }
 
-    /* ── Stats Bar ── */
-    .stats-bar {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: var(--card-shadow);
-      padding: 2rem 1.5rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .stat-item {
-      text-align: center;
-      padding: 0.5rem;
-    }
-
-    .stat-item .icon-wrap {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: rgba(245, 56, 56, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 0.75rem;
-    }
-
-    .stat-item .icon-wrap img {
-      width: 28px;
-      height: 28px;
-      object-fit: contain;
-    }
-
-    .stat-item .num {
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: var(--navy);
-      line-height: 1;
-    }
-
-    .stat-item .label {
-      font-size: 0.875rem;
-      color: var(--body);
-      margin-top: 0.35rem;
-    }
-
     /* ── Workflow Timeline ── */
     .workflow {
       position: relative;
@@ -250,8 +206,8 @@
     }
 
     .workflow--hero .workflow-step {
-      margin-bottom: 1.15rem;
-      gap: 1.25rem;
+      margin-bottom: 0.75rem;
+      gap: 1rem;
     }
 
     .workflow--hero .workflow-step:last-child {
@@ -355,6 +311,110 @@
       font-weight: 600;
       color: var(--navy);
       margin-bottom: 0.35rem;
+    }
+
+    .workflow-step--rich {
+      align-items: flex-start;
+    }
+
+    .workflow-step--rich .step-num {
+      margin-top: 0.85rem;
+    }
+
+    .step-content--expanded {
+      padding: 1.15rem 1.35rem 1.25rem;
+    }
+
+    .step-lead {
+      font-size: 0.88rem;
+      color: var(--body);
+      margin-bottom: 0.85rem !important;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(15, 19, 42, 0.07);
+    }
+
+    .phase-pipeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    .phase-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 10px;
+      transition: background 0.2s ease;
+    }
+
+    .phase-item:hover {
+      background: rgba(245, 56, 56, 0.04);
+    }
+
+    .phase-marker {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 26px;
+      padding-top: 0.1rem;
+    }
+
+    .phase-badge {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid rgba(245, 56, 56, 0.35);
+      color: var(--coral);
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .phase-item:not(:last-child) .phase-marker::after {
+      content: "";
+      flex: 1;
+      width: 2px;
+      min-height: 0.85rem;
+      margin-top: 0.25rem;
+      background: linear-gradient(to bottom, rgba(245, 56, 56, 0.35), rgba(245, 56, 56, 0.12));
+      border-radius: 1px;
+    }
+
+    .phase-body {
+      flex: 1;
+      min-width: 0;
+      padding-top: 0.05rem;
+    }
+
+    .phase-title {
+      display: block;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.35;
+      margin-bottom: 0.15rem;
+    }
+
+    .phase-desc {
+      display: block;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: #6b7285;
+    }
+
+    .phase-item:last-child .phase-badge {
+      background: var(--coral);
+      border-color: var(--coral);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(245, 56, 56, 0.28);
     }
 
     .step-content p {
@@ -512,32 +572,51 @@
       background: var(--coral);
     }
 
-    #workflow .row {
-      margin-bottom: 0 !important;
-      --bs-gutter-x: 5rem;
-      --bs-gutter-y: 2rem;
+    #workflow {
+      align-items: flex-start;
+      overflow-x: hidden;
+      overflow-y: auto;
+      overscroll-behavior-y: contain;
+    }
+
+    #workflow .section-header--left {
+      margin-bottom: 0.85rem !important;
     }
 
     #workflow .section-title {
-      margin-bottom: 1rem;
-    }
-
-    #workflow .intro-text {
-      line-height: 1.85;
-      margin-bottom: 2rem;
-    }
-
-    #workflow .stats-bar {
       margin-bottom: 0;
-      padding: 2.25rem 1.75rem;
-    }
-
-    #workflow .stat-item {
-      padding: 0.75rem 0.5rem;
     }
 
     .workflow--hero .step-content h4 {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .workflow--hero .workflow-step--rich:last-child .step-content--expanded {
+      padding-bottom: 1.35rem;
+    }
+
+    .workflow--hero .step-lead {
+      margin-bottom: 0.6rem !important;
+      padding-bottom: 0.5rem;
+      font-size: 0.84rem;
+    }
+
+    .workflow--hero .phase-item {
+      padding: 0.38rem 0.5rem;
+    }
+
+    .workflow--hero .phase-item:not(:last-child) .phase-marker::after {
+      min-height: 0.45rem;
+    }
+
+    .workflow--hero .phase-title {
+      font-size: 0.84rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .workflow--hero .phase-desc {
+      font-size: 0.78rem;
+      line-height: 1.45;
     }
 
     #agents .section-header--left {
@@ -550,7 +629,7 @@
 
     @media (max-height: 800px) {
       :root {
-        --section-padding-y: 1.25rem;
+        --section-padding-y: 1rem;
       }
 
       .section-title {
@@ -558,16 +637,32 @@
         margin-bottom: 0.5rem;
       }
 
+      #workflow .section-header--left {
+        margin-bottom: 0.6rem !important;
+      }
+
       .workflow--hero .workflow-step {
-        margin-bottom: 0.9rem;
+        margin-bottom: 0.55rem;
+        gap: 0.75rem;
       }
 
-      #workflow .row {
-        --bs-gutter-x: 3.5rem;
+      .workflow--hero .step-lead {
+        margin-bottom: 0.45rem !important;
+        padding-bottom: 0.4rem;
+        font-size: 0.8rem;
       }
 
-      #workflow .intro-text {
-        margin-bottom: 1.5rem;
+      .workflow--hero .phase-item {
+        padding: 0.3rem 0.4rem;
+      }
+
+      .workflow--hero .phase-title {
+        font-size: 0.78rem;
+      }
+
+      .workflow--hero .phase-desc {
+        font-size: 0.72rem;
+        line-height: 1.4;
       }
 
       .step-content {
@@ -583,8 +678,25 @@
         line-height: 1.45;
       }
 
-      .stats-bar {
-        padding: 1.25rem 1rem;
+      .step-content--expanded {
+        padding: 0.75rem 0.95rem 0.85rem;
+      }
+
+      .workflow-step--rich .step-num {
+        margin-top: 0.55rem;
+      }
+
+      .phase-item {
+        padding: 0.4rem 0.45rem;
+      }
+
+      .phase-title {
+        font-size: 0.8rem;
+      }
+
+      .phase-desc {
+        font-size: 0.75rem;
+        line-height: 1.4;
       }
 
       .agent-card .agent-img {
@@ -601,108 +713,100 @@
   <!-- Page 1: Task Closed Loop -->
   <section class="page section" id="workflow" data-page="0">
     <div class="container">
-      <div class="row align-items-center g-5">
-        <div class="col-lg-5">
-          <span class="page-pill"><span class="dot"></span>AI 赋能 自动化测试</span>
-          <h2 class="section-title">端到端任务闭环</h2>
-          <p class="intro-text">
-            以多模态大模型为底座，贯通需求理解、页面探索、脚本生成与回归验证，将传统自动化从「一次性编写」升级为可持续演进的智能闭环，显著降低脚本编写与维护成本。
-          </p>
-          <div class="stats-bar">
-            <div class="row g-3">
-              <div class="col-6">
-                <div class="stat-item">
-                  <div class="icon-wrap">
-                    <img src="assets/img/icons/pricing.png" alt="" />
-                  </div>
-                  <div class="num">5</div>
-                  <div class="label">AI · 核心能力实践</div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="stat-item">
-                  <div class="icon-wrap">
-                    <svg viewBox="0 0 24 24" width="28" height="28" fill="#F53838"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                  </div>
-                  <div class="num">7</div>
-                  <div class="label">闭环步骤</div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="stat-item">
-                  <div class="icon-wrap">
-                    <svg viewBox="0 0 24 24" width="28" height="28" fill="#F53838"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-                  </div>
-                  <div class="num">3</div>
-                  <div class="label">协作 Agent</div>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="stat-item">
-                  <div class="icon-wrap">
-                    <svg viewBox="0 0 24 24" width="28" height="28" fill="#F53838"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
-                  </div>
-                  <div class="num">AI</div>
-                  <div class="label">多模态驱动</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-7">
-          <div class="workflow workflow--hero">
+      <div class="section-header--left mb-4">
+        <span class="page-pill"><span class="dot"></span>AI 赋能 自动化测试</span>
+        <h2 class="section-title">端到端任务闭环工作流</h2>
+      </div>
+      <div class="workflow workflow--hero">
             <div class="workflow-step">
               <div class="step-num">1</div>
               <div class="step-content">
-                <h4>需求输入</h4>
-                <p>基于测试用例文档或业务需求描述完成需求分析，推导生成明确可执行的测试意图。</p>
+                <h4>需求探索</h4>
+                <p>由业务人员提供操作步骤与业务背景，AI通过对话澄清确认需求，最终提炼生成清晰可落地的标准化测试意图。。</p>
               </div>
             </div>
-            <div class="workflow-step">
+            <div class="workflow-step workflow-step--rich">
               <div class="step-num">2</div>
-              <div class="step-content">
-                <h4>任务编排</h4>
-                <p>主 Agent 按任务类型与阶段依赖，调度分析、设计、执行等子流程。</p>
+              <div class="step-content step-content--expanded">
+                <h4>探索验证</h4>
+                <p class="step-lead">根据需求探索文档，AI 自主探索操作路径并输出可执行方案</p>
+                <div class="phase-pipeline">
+                  <div class="phase-item">
+                    <div class="phase-marker"><span class="phase-badge">1</span></div>
+                    <div class="phase-body">
+                      <span class="phase-title">读取需求探索文档</span>
+                      <span class="phase-desc">加载阶段一产出的结构化需求分析报告，明确测试意图与场景边界</span>
+                    </div>
+                  </div>
+                  <div class="phase-item">
+                    <div class="phase-marker"><span class="phase-badge">2</span></div>
+                    <div class="phase-body">
+                      <span class="phase-title">AI 自主探索操作路径</span>
+                      <span class="phase-desc">MCP 操控浏览器发现页面结构、iframe 层级与定位器，逐步验证操作路径</span>
+                    </div>
+                  </div>
+                  <div class="phase-item">
+                    <div class="phase-marker"><span class="phase-badge">3</span></div>
+                    <div class="phase-body">
+                      <span class="phase-title">智能分析断言测试</span>
+                      <span class="phase-desc">分析页面行为、网络请求与业务校验点，制定断言策略与验证方案</span>
+                    </div>
+                  </div>
+                  <div class="phase-item">
+                    <div class="phase-marker"><span class="phase-badge">4</span></div>
+                    <div class="phase-body">
+                      <span class="phase-title">输出设计文档与 Spec</span>
+                      <span class="phase-desc">经审查批准后落盘技术设计文档与 Spec 测试计划，供脚本生成使用</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="workflow-step">
+            <div class="workflow-step workflow-step--rich">
               <div class="step-num">3</div>
-              <div class="step-content">
-                <h4>分阶段执行</h4>
-                <p>Subagent 各司其职：分析定规格、探索定方案、编码与验证，边界清晰。</p>
-              </div>
-            </div>
-            <div class="workflow-step">
-              <div class="step-num">4</div>
-              <div class="step-content">
-                <h4>领域知识注入</h4>
-                <p>按阶段加载 Skills，注入 HIS 组件契约、探索规范与执行门禁，提升生成质量。</p>
-              </div>
-            </div>
-            <div class="workflow-step">
-              <div class="step-num">5</div>
-              <div class="step-content">
-                <h4>浏览器探索</h4>
-                <p>通过 MCP 操控浏览器，自主探索页面结构与操作路径，辅以视觉定位，减少脆弱选择器依赖。</p>
-              </div>
-            </div>
-            <div class="workflow-step">
-              <div class="step-num">6</div>
-              <div class="step-content">
-                <h4>脚本生成</h4>
-                <p>以业务意图驱动探测实现，生成抗震 Playwright 测试脚本，并通过专项回归验证后交付。</p>
-              </div>
-            </div>
-            <div class="workflow-step">
-              <div class="step-num">7</div>
-              <div class="step-content">
-                <h4>反馈回流</h4>
-                <p>执行与回归结论自动回流上游，驱动脚本修复与持续迭代；运行中处理重试、等待、弹框等异常，对失败场景做断言校验与根因分析。</p>
+              <div class="step-content step-content--expanded">
+                <h4>测试执行</h4>
+                <p class="step-lead">基于探索验证结论，按闭环流水线推进脚本交付</p>
+                <div class="phase-pipeline">
+                  <div class="phase-item">
+                    <div class="phase-marker"><span class="phase-badge">1</span></div>
+                    <div class="phase-body">
+                      <span class="phase-title">学习领域知识</span>
+                      <span class="phase-desc">加载 Skills，注入 HIS 组件契约与执行门禁</span>
+                    </div>
+                  </div>
+                  <div class="phase-item">
+                    <div class="phase-marker"><span class="phase-badge">2</span></div>
+                    <div class="phase-body">
+                      <span class="phase-title">代码生成</span>
+                      <span class="phase-desc">以业务意图驱动探测实现，生成 Playwright 测试脚本</span>
+                    </div>
+                  </div>
+                  <div class="phase-item">
+                    <div class="phase-marker"><span class="phase-badge">3</span></div>
+                    <div class="phase-body">
+                      <span class="phase-title">语法校验</span>
+                      <span class="phase-desc">校验 TypeScript 语法与项目规范，确保可编译运行</span>
+                    </div>
+                  </div>
+                  <div class="phase-item">
+                    <div class="phase-marker"><span class="phase-badge">4</span></div>
+                    <div class="phase-body">
+                      <span class="phase-title">执行用例</span>
+                      <span class="phase-desc">运行专项回归，处理重试、等待、弹框等运行时异常</span>
+                    </div>
+                  </div>
+                  <div class="phase-item">
+                    <div class="phase-marker"><span class="phase-badge">5</span></div>
+                    <div class="phase-body">
+                      <span class="phase-title">脚本修复和迭代</span>
+                      <span class="phase-desc">失败根因分析并自动回流修复，直至验证通过</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -842,8 +946,18 @@
         }
       });
 
+      function canScrollWithinPage(deltaY) {
+        const page = pages[currentPage];
+        if (!page || page.scrollHeight <= page.clientHeight + 1) return false;
+        if (deltaY > 0) return page.scrollTop + page.clientHeight < page.scrollHeight - 1;
+        if (deltaY < 0) return page.scrollTop > 1;
+        return false;
+      }
+
       document.addEventListener("wheel", e => {
         if (wheelLocked || isAnimating) return;
+
+        if (canScrollWithinPage(e.deltaY)) return;
 
         if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
           if (e.deltaX > 30 && currentPage < pages.length - 1) {
