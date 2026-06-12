@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>自动化测试 · 工作汇报</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="assets/css/theme.min.css" rel="stylesheet" />
+  <link rel="icon" href="assets/img/favicons/favicon.ico" />
+  <style>
+    :root {
+      --coral: #F53838;
+      --green: #38F5B1;
+      --coral-shadow: 0 12px 32px rgba(245, 56, 56, 0.35);
+      --navy: #0B132A;
+      --body: #4F5665;
+      --section-bg: #F8F8F8;
+      --card-shadow: 0 8px 24px rgba(15, 19, 42, 0.08);
+    }
+
+    body {
+      font-family: "Rubik", sans-serif;
+      color: var(--body);
+      overflow-x: hidden;
+    }
+
+    /* ── Navbar ── */
+    .report-nav {
+      background: #fff;
+      box-shadow: 0 4px 20px rgba(15, 19, 42, 0.06);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .report-nav .brand {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--navy);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .report-nav .brand img {
+      height: 32px;
+    }
+
+    .report-nav .nav-link {
+      color: var(--body);
+      font-weight: 500;
+      padding: 0.4rem 1rem !important;
+      border-radius: 50px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .report-nav .nav-link:hover,
+    .report-nav .nav-link.active {
+      color: var(--coral);
+      background: rgba(245, 56, 56, 0.08);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 5rem 0 4rem;
+      background: #fff;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero .keyword {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(245,56,56,0.12), rgba(245,56,56,0.04));
+      color: var(--coral);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(245, 56, 56, 0.2);
+    }
+
+    .hero p.lead {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 520px;
+      margin-bottom: 2rem;
+    }
+
+    .btn-coral {
+      background: var(--coral);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 0.75rem 2rem;
+      font-weight: 600;
+      box-shadow: var(--coral-shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-coral:hover {
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(245, 56, 56, 0.4);
+    }
+
+    .btn-outline-coral {
+      background: transparent;
+      color: var(--coral);
+      border: 2px solid var(--coral);
+      border-radius: 50px;
+      padding: 0.7rem 1.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-outline-coral:hover {
+      background: var(--coral);
+      color: #fff;
+    }
+
+    .hero-illustration {
+      max-width: 100%;
+      height: auto;
+      filter: drop-shadow(0 20px 40px rgba(15, 19, 42, 0.12));
+    }
+
+    /* ── Stats Bar ── */
+    .stats-bar {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: var(--card-shadow);
+      padding: 2rem 1.5rem;
+      margin-top: -2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 0.5rem;
+    }
+
+    .stat-item .icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(245, 56, 56, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.75rem;
+    }
+
+    .stat-item .icon-wrap img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+    }
+
+    .stat-item .num {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .stat-item .label {
+      font-size: 0.875rem;
+      color: var(--body);
+      margin-top: 0.35rem;
+    }
+
+    /* ── Section ── */
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-alt {
+      background: var(--section-bg);
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.25rem);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-subtitle {
+      color: var(--body);
+      max-width: 560px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+
+    /* ── Feature Cards ── */
+    .feature-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem 1.75rem;
+      box-shadow: var(--card-shadow);
+      height: 100%;
+      transition: transform 0.25s, box-shadow 0.25s;
+      border: 1px solid rgba(15, 19, 42, 0.04);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(15, 19, 42, 0.12);
+    }
+
+    .feature-card .card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(245, 56, 56, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-card .card-icon svg {
+      width: 26px;
+      height: 26px;
+      fill: var(--coral);
+    }
+
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .feature-card p {
+      font-size: 0.925rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ── Workflow Timeline ── */
+    .workflow {
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .workflow::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--coral), transparent);
+      transform: translateX(-50%);
+      opacity: 0.3;
+    }
+
+    @media (max-width: 767px) {
+      .workflow::before { left: 24px; }
+    }
+
+    .workflow-step {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .workflow-step:nth-child(even) {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+
+    @media (max-width: 767px) {
+      .workflow-step,
+      .workflow-step:nth-child(even) {
+        flex-direction: row;
+        text-align: left;
+        padding-left: 0;
+      }
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--coral);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--coral-shadow);
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-content {
+      flex: 1;
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: var(--card-shadow);
+      max-width: 420px;
+    }
+
+    .workflow-step:nth-child(even) .step-content {
+      margin-left: auto;
+    }
+
+    @media (max-width: 767px) {
+      .step-content { max-width: 100%; }
+      .workflow-step:nth-child(even) .step-content { margin-left: 0; }
+    }
+
+    .step-content h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.35rem;
+    }
+
+    .step-content p {
+      font-size: 0.9rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* ── Agent Cards ── */
+    .agent-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      height: 100%;
+      transition: transform 0.25s;
+      border: 1px solid rgba(15, 19, 42, 0.04);
+    }
+
+    .agent-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .agent-card .agent-img {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      background: linear-gradient(180deg, #f9fafd 0%, #fff 100%);
+      padding: 1rem;
+    }
+
+    .agent-card .agent-body {
+      padding: 1.5rem;
+    }
+
+    .agent-card .agent-role {
+      display: inline-block;
+      background: rgba(245, 56, 56, 0.1);
+      color: var(--coral);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      margin-bottom: 0.75rem;
+    }
+
+    .agent-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+    }
+
+    .agent-card p {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .collab-visual {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      background: #fff;
+      padding: 1.5rem;
+    }
+
+    .collab-visual img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    /* ── Check list ── */
+    .check-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .check-list .check-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .check-list .check-icon svg {
+      width: 13px;
+      height: 13px;
+      fill: #000;
+    }
+
+    /* ── Footer ── */
+    .report-footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.7);
+      padding: 2.5rem 0;
+      text-align: center;
+      font-size: 0.875rem;
+    }
+
+    .report-footer strong {
+      color: #fff;
+    }
+
+    /* ── Page indicator pills ── */
+    .page-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(245, 56, 56, 0.1);
+      color: var(--coral);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.3rem 0.9rem;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+    }
+
+    .page-pill .dot {
+      flex-shrink: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: transparent;
+      border: 2px solid var(--coral);
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    .page-pill .dot::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--coral);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="report-nav">
+    <div class="container">
+      <div class="d-flex align-items-center justify-content-between">
+        <a class="brand" href="#">
+          <img src="assets/img/icons/logo.png" alt="Logo" />
+          自动化测试
+        </a>
+        <ul class="nav d-none d-md-flex gap-1 mb-0 list-unstyled">
+          <li><a class="nav-link active" href="#overview">概览</a></li>
+          <li><a class="nav-link" href="#capabilities">AI · 核心能力实践</a></li>
+          <li><a class="nav-link" href="#workflow">任务闭环</a></li>
+          <li><a class="nav-link" href="#agents">多 Agent 协作</a></li>
+        </ul>
+        <a class=" d-none d-sm-inline-block" href="#workflow" style="padding:0.5rem 1.25rem;font-size:0.875rem;"></a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page 1: Hero -->
+  <section class="hero" id="overview">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <span class="page-pill"><span class="dot"></span>AI 自动化测试</span>
+          <h1>AI 驱动的<br />新一代自动化测试体系</h1>
+          <p class="lead">
+            AI 驱动的自动化测试是利用多模态大模型实现用例自动生成、元素智能识别、用例动态优化的新一代自动化测试体系。
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <a class="btn-coral" href="#capabilities">探索 AI · 核心能力实践</a>
+          </div>
+        </div>
+        <div class="col-lg-6 text-center">
+          <img class="hero-illustration" src="assets/img/illustrations/1.png" alt="AI 自动化测试" />
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-bar mt-5">
+        <div class="row g-3">
+          <div class="col-6 col-md-3">
+            <div class="stat-item">
+              <div class="icon-wrap">
+                <img src="assets/img/icons/pricing.png" alt="" />
+              </div>
+              <div class="num">5</div>
+              <div class="label">AI · 核心能力实践</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-item">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="#F53838"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              </div>
+              <div class="num">6</div>
+              <div class="label">闭环步骤</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-item">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="#F53838"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+              </div>
+              <div class="num">3</div>
+              <div class="label">协作 Agent</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-item">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="#F53838"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+              </div>
+              <div class="num">AI</div>
+              <div class="label">多模态驱动</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 1: Core Capabilities -->
+  <section class="section section-alt" id="capabilities">
+    <div class="container">
+      <div class="text-center">
+        <span class="page-pill"><span class="dot"></span>AI · 核心能力实践</span>
+        <h2 class="section-title">AI · 核心能力实践</h2>
+        <p class="section-subtitle">
+          从自然语言到可执行代码，从视觉定位到智能断言，构建端到端的 AI 自动化测试能力矩阵。
+        </p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            </div>
+            <h3>自然语言转自动化用例</h3>
+            <p>根据业务需求描述自动生成可执行的自动化代码，降低脚本编写门槛。</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </div>
+            <h3>视觉智能定位</h3>
+            <p>通过视觉智能定位技术，自动识别 UI 元素，摆脱脆弱的选择器依赖。</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+            </div>
+            <h3>自主探索与执行</h3>
+            <p>AI 自主探索产品页面的操作路径，无需人工逐步录制即可完成流程覆盖。</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+          <div class="feature-card">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            </div>
+            <h3>异常智能处理</h3>
+            <p>自主执行重试、等待、关闭弹框等操作，提升测试执行的稳定性与自愈能力。</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+          <div class="feature-card">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            </div>
+            <h3>智能断言与分析</h3>
+            <p>通过智能断言与分析技术，自动判断测试结果是否符合预期，并给出诊断分析。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 2: Task Closed Loop -->
+  <section class="section" id="workflow">
+    <div class="container">
+      <div class="row align-items-center g-5 mb-5">
+        <div class="col-lg-5">
+          <span class="page-pill"><span class="dot"></span>任务闭环</span>
+          <h2 class="section-title">端到端任务闭环</h2>
+          <p style="line-height:1.8; margin-bottom:1.5rem;">
+            从需求输入到反馈回流，形成完整的自动化测试工作流。Agent 调度各阶段任务，Skills 注入领域知识，MCP 驱动浏览器视觉定位。
+          </p>
+          <ul class="check-list">
+            <li>
+              <span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              <span>需求描述驱动，无需手工维护大量脚本</span>
+            </li>
+            <li>
+              <span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              <span>Subagent 分工执行，各阶段职责清晰</span>
+            </li>
+            <li>
+              <span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              <span>执行结果自动回流，支持修复与回归验证</span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-7">
+          <img src="assets/img/illustrations/2.png" alt="任务闭环" class="hero-illustration" style="max-height:360px;" />
+        </div>
+      </div>
+
+      <div class="workflow">
+        <div class="workflow-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>用例输入</h4>
+            <p>以需求描述作为起点，将业务语言转化为可执行的测试意图。</p>
+          </div>
+        </div>
+        <div class="workflow-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Agent 调度任务执行顺序</h4>
+            <p>主 Agent 根据任务类型与依赖关系，编排各阶段的执行次序。</p>
+          </div>
+        </div>
+        <div class="workflow-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Subagent 驱动各阶段任务</h4>
+            <p>子 Agent 分别负责分析、设计、编码等专业子任务，边界清晰。</p>
+          </div>
+        </div>
+        <div class="workflow-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>加载 Skills 协助 AI 学习领域知识</h4>
+            <p>通过 Skills 注入 HIS 等业务领域知识，提升生成质量与准确性。</p>
+          </div>
+        </div>
+        <div class="workflow-step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <h4>调用 MCP 进行浏览器视觉定位</h4>
+            <p>借助 MCP 工具链实现浏览器操控与视觉元素识别，完成页面探索。</p>
+          </div>
+        </div>
+        <div class="workflow-step">
+          <div class="step-num">6</div>
+          <div class="step-content">
+            <h4>反馈回流</h4>
+            <p>测试执行、修复与回归验证结果自动回流，驱动下一轮优化迭代。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 3: Multi-Agent Collaboration -->
+  <section class="section section-alt" id="agents">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="page-pill"><span class="dot"></span>多 Agent 协助</span>
+        <h2 class="section-title">多 Agent 协作架构</h2>
+        <p class="section-subtitle">
+          Agents 区分角色边界，各司其职、协同完成从需求分析到代码生成与回归验证的全流程。
+        </p>
+      </div>
+
+      <div class="row g-4 mb-5">
+        <div class="col-md-4">
+          <div class="agent-card">
+            <img class="agent-img" src="assets/img/illustrations/a-1.png" alt="需求分析 Agent" />
+            <div class="agent-body">
+              <span class="agent-role">Analysis Agent</span>
+              <h3>需求分析 Agent</h3>
+              <p>通过测试用例、需求描述输出结构化测试报告，明确测试范围与验收标准。</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="agent-card">
+            <img class="agent-img" src="assets/img/illustrations/a-2.png" alt="需求设计 Agent" />
+            <div class="agent-body">
+              <span class="agent-role">Design Agent</span>
+              <h3>需求设计 Agent</h3>
+              <p>基于人机协作模式进行页面操作路径探索，输出设计报告和智能断言测试报告。</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="agent-card">
+            <img class="agent-img" src="assets/img/illustrations/a-3.png" alt="Coder Agent" />
+            <div class="agent-body">
+              <span class="agent-role">Coder Agent</span>
+              <h3>需求执行 Agent</h3>
+              <p>负责测试用例代码生成、异常修复与回归测试验证，确保脚本可稳定运行。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <div class="collab-visual">
+            <img src="assets/agent2.png" alt="Agent 工程结构图" />
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <h3 style="color:var(--navy);font-weight:700;margin-bottom:1.25rem;">如何协作：Agents 区分角色边界</h3>
+          <ul class="check-list">
+            <li>
+              <span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              <span><strong style="color:var(--navy)">需求分析 Agent</strong> — 解析测试用例与需求，产出需求分析报告</span>
+            </li>
+            <li>
+              <span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              <span><strong style="color:var(--navy)">需求设计 Agent</strong> — 人机协作探索页面路径，产出技术设计与断言方案</span>
+            </li>
+            <li>
+              <span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              <span><strong style="color:var(--navy)">需求执行 Agent</strong> — 生成 Playwright 测试代码，修复异常并执行回归验证</span>
+            </li>
+            <li>
+              <span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+              <span>三阶段门禁：每阶段产出须经审查批准后方可进入下一阶段</span>
+            </li>
+          </ul>
+          <a class="btn-coral mt-3" href="#overview">返回概览</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="report-footer">
+    <div class="container">
+      <p><strong>自动化测试工作汇报</strong> · AI 驱动的下一代测试体系</p>
+      <p class="mb-0 mt-2" style="opacity:0.6;">基于多模态大模型 · 多 Agent 协作 · Skills + MCP</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/theme.min.js"></script>
+  <script>
+    // 导航高亮
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".report-nav .nav-link");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.id;
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle("active", link.getAttribute("href") === "#" + current);
+      });
+    });
+  </script>
+</body>
+</html>
