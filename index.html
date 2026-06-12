@@ -738,7 +738,7 @@
         <span class="page-pill"><span class="dot"></span>多 Agent 协助</span>
         <h2 class="section-title">多 Agent 协作架构</h2>
         <p class="section-subtitle">
-          Agents 区分角色边界，各司其职、协同完成从需求分析到代码生成与回归验证的全流程。
+          测试用例与业务需求经三阶段 Agent 串行流转：分析定规格、探索定方案、执行出脚本，阶段门禁保障质量可控。
         </p>
       </div>
 
@@ -747,9 +747,9 @@
           <div class="agent-card">
             <img class="agent-img" src="assets/img/illustrations/a-1.png" alt="需求分析 Agent" />
             <div class="agent-body">
-              <span class="agent-role">Analysis Agent</span>
+              <span class="agent-role">his-test-analysis</span>
               <h3>需求分析 Agent</h3>
-              <p>通过测试用例、需求描述输出结构化测试报告，明确测试范围与验收标准。</p>
+              <p>以 5W2H 解析用例与业务需求，识别路径包含关系并合并递进场景，产出结构化需求分析报告。</p>
             </div>
           </div>
         </div>
@@ -757,19 +757,19 @@
           <div class="agent-card">
             <img class="agent-img" src="assets/img/illustrations/a-2.png" alt="需求设计 Agent" />
             <div class="agent-body">
-              <span class="agent-role">Design Agent</span>
+              <span class="agent-role">his-test-plan</span>
               <h3>需求设计 Agent</h3>
-              <p>基于人机协作模式进行页面操作路径探索，输出设计报告和智能断言测试报告。</p>
+              <p>AI 自主探索页面结构与定位器，困难场景升级人机协同，产出技术设计与 Spec 测试计划。</p>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="agent-card">
-            <img class="agent-img" src="assets/img/illustrations/a-3.png" alt="Coder Agent" />
+            <img class="agent-img" src="assets/img/illustrations/a-3.png" alt="需求执行 Agent" />
             <div class="agent-body">
-              <span class="agent-role">Coder Agent</span>
+              <span class="agent-role">his-test-executing</span>
               <h3>需求执行 Agent</h3>
-              <p>负责测试用例代码生成、异常修复与回归测试验证，确保脚本可稳定运行。</p>
+              <p>以业务意图驱动探测实现，生成抗震 Playwright 脚本，专项验证通过后加固清理并交付。</p>
             </div>
           </div>
         </div>
@@ -782,23 +782,23 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <h3 style="color:var(--navy);font-weight:700;margin-bottom:1.25rem;">如何协作：Agents 区分角色边界</h3>
+          <h3 style="color:var(--navy);font-weight:700;margin-bottom:1.25rem;">协作机制：三阶段门禁流水线</h3>
           <ul class="check-list">
             <li>
               <span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-              <span><strong style="color:var(--navy)">需求分析 Agent</strong> — 解析测试用例与需求，产出需求分析报告</span>
+              <span><strong style="color:var(--navy)">阶段一 → 二</strong> — 需求分析报告经审查批准后，驱动浏览器探索与定位方案设计</span>
             </li>
             <li>
               <span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-              <span><strong style="color:var(--navy)">需求设计 Agent</strong> — 人机协作探索页面路径，产出技术设计与断言方案</span>
+              <span><strong style="color:var(--navy)">阶段二 → 三</strong> — 技术设计与 Spec 计划经批准后，转入意图驱动的代码生成与探测</span>
             </li>
             <li>
               <span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-              <span><strong style="color:var(--navy)">需求执行 Agent</strong> — 生成 Playwright 测试代码，修复异常并执行回归验证</span>
+              <span><strong style="color:var(--navy)">探索兜底</strong> — 同一功能自主探索连续失败 ≥3 次时，自动升级人机协同模式</span>
             </li>
             <li>
               <span class="check-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
-              <span>三阶段门禁：每阶段产出须经审查批准后方可进入下一阶段</span>
+              <span><strong style="color:var(--navy)">完成门禁</strong> — 须通过 Playwright 专项回归验证，方可标记交付完成</span>
             </li>
           </ul>
         </div>
