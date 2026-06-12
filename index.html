@@ -30,6 +30,11 @@
       height: 100%;
       margin: 0;
       overflow: hidden;
+      overscroll-behavior: none;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
     }
 
     body {
@@ -154,16 +159,31 @@
       padding: var(--section-padding-y) var(--section-padding-x);
       overflow: hidden;
       display: flex;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
     }
 
     .section > .container {
       width: 100%;
       max-width: var(--content-max-width);
+      height: 100%;
+      max-height: 100%;
       margin-left: auto;
       margin-right: auto;
       padding-left: 0;
       padding-right: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: stretch;
+      gap: 30px;
+      min-height: 0;
+    }
+
+    .section-header--left {
+      margin-bottom: 0;
     }
 
     .section .row {
@@ -203,11 +223,21 @@
 
     .workflow--hero {
       padding: 0;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(0.5rem, 1vw, 1rem);
+      flex: 0 1 auto;
+      min-height: 0;
+      align-content: start;
+      width: 100%;
     }
 
     .workflow--hero .workflow-step {
-      margin-bottom: 0.75rem;
-      gap: 1rem;
+      margin-bottom: 0;
+      gap: 0.5rem;
+      flex-direction: column;
+      align-items: stretch;
+      min-height: 0;
     }
 
     .workflow--hero .workflow-step:last-child {
@@ -221,12 +251,72 @@
 
     .workflow--hero .workflow-step,
     .workflow--hero .workflow-step:nth-child(even) {
-      flex-direction: row;
+      flex-direction: column;
       text-align: left;
     }
 
     .workflow--hero .workflow-step:nth-child(even) .step-content {
       margin-left: 0;
+    }
+
+    .workflow--hero .step-content {
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .step-header {
+      flex-shrink: 0;
+      text-align: left;
+      width: 100%;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 0.65rem;
+      row-gap: 0.25rem;
+      align-items: center;
+    }
+
+    .step-title-row {
+      display: contents;
+    }
+
+    .step-header .step-num {
+      grid-column: 1;
+      grid-row: 1;
+      width: auto;
+      min-width: 52px;
+      height: 28px;
+      padding: 0 0.5rem;
+      border-radius: 50px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      margin-top: 0;
+      flex-shrink: 0;
+    }
+
+    .step-title-row h4 {
+      grid-column: 2;
+      grid-row: 1;
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+
+    .step-header .step-lead {
+      grid-column: 2;
+      grid-row: 2;
+      align-self: start;
+      margin: 0 !important;
+      padding: 0;
+      border-bottom: none;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: var(--body);
     }
 
     .workflow--hero::before {
@@ -314,11 +404,9 @@
     }
 
     .workflow-step--rich {
-      align-items: flex-start;
-    }
-
-    .workflow-step--rich .step-num {
-      margin-top: 0.85rem;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
     }
 
     .step-content--expanded {
@@ -573,32 +661,32 @@
     }
 
     #workflow {
-      align-items: flex-start;
-      overflow-x: hidden;
-      overflow-y: auto;
-      overscroll-behavior-y: contain;
+      overflow: hidden;
     }
 
     #workflow .section-header--left {
-      margin-bottom: 0.85rem !important;
+      flex-shrink: 0;
+    }
+
+    #workflow .workflow--hero {
+      flex: 0 1 auto;
+      min-height: 0;
     }
 
     #workflow .section-title {
       margin-bottom: 0;
     }
 
-    .workflow--hero .step-content h4 {
-      margin-bottom: 0.4rem;
+    .workflow--hero .step-header {
+      margin-bottom: 0.15rem;
+    }
+
+    .workflow--hero .step-header .step-lead {
+      font-size: 0.84rem;
     }
 
     .workflow--hero .workflow-step--rich:last-child .step-content--expanded {
       padding-bottom: 1.35rem;
-    }
-
-    .workflow--hero .step-lead {
-      margin-bottom: 0.6rem !important;
-      padding-bottom: 0.5rem;
-      font-size: 0.84rem;
     }
 
     .workflow--hero .phase-item {
@@ -619,37 +707,147 @@
       line-height: 1.45;
     }
 
+    #agents > .container {
+      justify-content: center;
+      gap: 30px;
+    }
+
     #agents .section-header--left {
-      margin-bottom: 1.25rem !important;
+      flex-shrink: 0;
+    }
+
+    #agents .section-subtitle {
+      margin-bottom: 0;
+      font-size: clamp(0.82rem, 1.2vw, 0.92rem);
+      line-height: 1.55;
     }
 
     #agents .row.g-4 {
-      margin-bottom: 1.25rem !important;
+      margin-bottom: 0 !important;
+      flex-shrink: 0;
+    }
+
+    #agents .row.align-items-center {
+      flex-shrink: 0;
+      margin: 0;
+      --bs-gutter-y: 0.75rem;
+    }
+
+    #agents .agent-card .agent-img {
+      height: clamp(72px, 10vh, 110px);
+      padding: 12px 0.5rem 0.35rem;
+    }
+
+    #agents .agent-card .agent-body {
+      padding: 0.85rem 1rem;
+    }
+
+    #agents .agent-card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+    }
+
+    #agents .agent-card p {
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    #agents .collab-visual {
+      padding: 0.85rem;
+      display: flex;
+      align-items: center;
+    }
+
+    #agents .collab-visual img {
+      max-height: min(28vh, 220px);
+      width: auto;
+      max-width: 100%;
+      margin: 0 auto;
+      object-fit: contain;
+    }
+
+    #agents .check-list li {
+      margin-bottom: 0.65rem;
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+
+    #agents h3[style] {
+      font-size: clamp(1rem, 1.8vw, 1.15rem) !important;
+      margin-bottom: 0.85rem !important;
+    }
+
+    @media (max-width: 767px) {
+      .workflow--hero {
+        gap: 0.35rem;
+      }
+
+      .step-header .step-num {
+        min-width: 46px;
+        height: 24px;
+        padding: 0 0.4rem;
+        font-size: 0.62rem;
+      }
+
+      .step-title-row h4 {
+        font-size: 0.88rem;
+      }
+
+      .step-header .step-lead {
+        font-size: 0.78rem;
+        line-height: 1.45;
+      }
+
+      .workflow--hero .step-content--expanded {
+        padding: 0.55rem 0.65rem 0.6rem;
+      }
+
+      .workflow--hero .phase-item {
+        padding: 0.25rem 0.35rem;
+      }
+
+      .workflow--hero .phase-title {
+        font-size: 0.72rem;
+      }
+
+      .workflow--hero .phase-desc {
+        font-size: 0.68rem;
+        line-height: 1.35;
+      }
     }
 
     @media (max-height: 800px) {
       :root {
-        --section-padding-y: 1rem;
+        --section-padding-y: 0.75rem;
       }
 
       .section-title {
-        font-size: clamp(1.4rem, 2.5vw, 1.85rem);
-        margin-bottom: 0.5rem;
+        font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+        margin-bottom: 0.35rem;
       }
 
-      #workflow .section-header--left {
-        margin-bottom: 0.6rem !important;
+      .page-pill {
+        margin-bottom: 0.5rem;
+        font-size: 0.72rem;
+        padding: 0.2rem 0.7rem;
+      }
+
+
+      .workflow--hero {
+        gap: 0.45rem;
       }
 
       .workflow--hero .workflow-step {
-        margin-bottom: 0.55rem;
-        gap: 0.75rem;
+        margin-bottom: 0;
+        gap: 0.35rem;
       }
 
-      .workflow--hero .step-lead {
-        margin-bottom: 0.45rem !important;
-        padding-bottom: 0.4rem;
-        font-size: 0.8rem;
+      .workflow--hero .step-header .step-lead {
+        font-size: 0.76rem;
+      }
+
+      .workflow--hero .step-header {
+        margin-bottom: 0.1rem;
       }
 
       .workflow--hero .phase-item {
@@ -669,12 +867,12 @@
         padding: 0.65rem 0.9rem;
       }
 
-      .step-content h4 {
+      .step-title-row h4 {
         font-size: 0.92rem;
       }
 
-      .step-content p {
-        font-size: 0.82rem;
+      .step-header .step-lead {
+        font-size: 0.8rem;
         line-height: 1.45;
       }
 
@@ -682,8 +880,10 @@
         padding: 0.75rem 0.95rem 0.85rem;
       }
 
-      .workflow-step--rich .step-num {
-        margin-top: 0.55rem;
+      .step-header .step-num {
+        min-width: 48px;
+        height: 26px;
+        font-size: 0.64rem;
       }
 
       .phase-item {
@@ -700,7 +900,28 @@
       }
 
       .agent-card .agent-img {
-        height: 110px;
+        height: 72px;
+      }
+
+      #agents .section-subtitle {
+        margin-bottom: 0.65rem;
+      }
+
+      #agents > .container {
+        gap: 30px;
+      }
+
+      #agents .agent-card .agent-body {
+        padding: 0.65rem 0.85rem;
+      }
+
+      #agents .collab-visual img {
+        max-height: min(22vh, 160px);
+      }
+
+      #agents .check-list li {
+        margin-bottom: 0.45rem;
+        font-size: 0.8rem;
       }
     }
   </style>
@@ -713,29 +934,60 @@
   <!-- Page 1: Task Closed Loop -->
   <section class="page section" id="workflow" data-page="0">
     <div class="container">
-      <div class="section-header--left mb-4">
+      <div class="section-header--left">
         <span class="page-pill"><span class="dot"></span>AI 赋能 自动化测试</span>
         <h2 class="section-title">端到端任务闭环工作流</h2>
       </div>
       <div class="workflow workflow--hero">
-            <div class="workflow-step">
-              <div class="step-num">1</div>
-              <div class="step-content">
-                <h4>需求探索</h4>
-                <p>由业务人员提供操作步骤与业务背景，AI通过对话澄清确认需求，最终提炼生成清晰可落地的标准化测试意图。。</p>
-              </div>
-            </div>
             <div class="workflow-step workflow-step--rich">
-              <div class="step-num">2</div>
+              <div class="step-header">
+                <div class="step-title-row">
+                  <span class="step-num">step-1</span>
+                  <h4>需求探索</h4>
+                </div>
+                <p class="step-lead">由业务人员提供操作步骤与业务背景，分阶段提炼可落地的测试需求</p>
+              </div>
               <div class="step-content step-content--expanded">
-                <h4>探索验证</h4>
-                <p class="step-lead">根据需求探索文档，AI 自主探索操作路径并输出可执行方案</p>
                 <div class="phase-pipeline">
                   <div class="phase-item">
                     <div class="phase-marker"><span class="phase-badge">1</span></div>
                     <div class="phase-body">
-                      <span class="phase-title">读取需求探索文档</span>
-                      <span class="phase-desc">加载阶段一产出的结构化需求分析报告，明确测试意图与场景边界</span>
+                      <span class="phase-title">头脑风暴分析需求</span>
+                      <span class="phase-desc">围绕业务场景、操作路径与验收标准展开发散分析，梳理测试范围与关键意图</span>
+                    </div>
+                  </div>
+                  <div class="phase-item">
+                    <div class="phase-marker"><span class="phase-badge">2</span></div>
+                    <div class="phase-body">
+                      <span class="phase-title">AI 对话澄清确认需求</span>
+                      <span class="phase-desc">通过多轮对话消除歧义、补齐边界条件，与用户共同确认测试意图与场景</span>
+                    </div>
+                  </div>
+                  <div class="phase-item">
+                    <div class="phase-marker"><span class="phase-badge">3</span></div>
+                    <div class="phase-body">
+                      <span class="phase-title">产出测试需求分析文档</span>
+                      <span class="phase-desc">经审查批准后落盘结构化需求分析报告，作为后续探索验证的输入</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="workflow-step workflow-step--rich">
+              <div class="step-header">
+                <div class="step-title-row">
+                  <span class="step-num">step-2</span>
+                  <h4>探索验证</h4>
+                </div>
+                <p class="step-lead">根据测试需求分析文档，AI 自主探索操作路径并输出可执行方案</p>
+              </div>
+              <div class="step-content step-content--expanded">
+                <div class="phase-pipeline">
+                  <div class="phase-item">
+                    <div class="phase-marker"><span class="phase-badge">1</span></div>
+                    <div class="phase-body">
+                      <span class="phase-title">读取测试需求分析文档</span>
+                      <span class="phase-desc">加载阶段一产出的测试需求分析文档，明确测试意图与场景边界</span>
                     </div>
                   </div>
                   <div class="phase-item">
@@ -763,15 +1015,19 @@
               </div>
             </div>
             <div class="workflow-step workflow-step--rich">
-              <div class="step-num">3</div>
+              <div class="step-header">
+                <div class="step-title-row">
+                  <span class="step-num">step-3</span>
+                  <h4>测试执行</h4>
+                </div>
+                <p class="step-lead">基于探索验证结论，按闭环流水线推进脚本交付</p>
+              </div>
               <div class="step-content step-content--expanded">
-                <h4>测试执行</h4>
-                <p class="step-lead">基于探索验证结论，AI 按闭环流水线推进脚本交付</p>
                 <div class="phase-pipeline">
                   <div class="phase-item">
                     <div class="phase-marker"><span class="phase-badge">1</span></div>
                     <div class="phase-body">
-                      <span class="phase-title">学习领域知识</span>
+                      <span class="phase-title">加载测试规范</span>
                       <span class="phase-desc">加载 Skills，注入 HIS 组件契约与执行门禁</span>
                     </div>
                   </div>
@@ -813,7 +1069,7 @@
   <!-- Page 2: Multi-Agent Collaboration -->
   <section class="page section section-alt" id="agents" data-page="1">
     <div class="container">
-      <div class="section-header--left mb-5">
+      <div class="section-header--left">
         <span class="page-pill"><span class="dot"></span>多 Agent 协助</span>
         <h2 class="section-title">多 Agent 协作架构</h2>
         <p class="section-subtitle">
@@ -821,7 +1077,7 @@
         </p>
       </div>
 
-      <div class="row g-4 mb-5">
+      <div class="row g-4">
         <div class="col-md-4">
           <div class="agent-card">
             <img class="agent-img" src="assets/img/illustrations/a-1.png" alt="需求分析 Agent" />
@@ -854,7 +1110,7 @@
         </div>
       </div>
 
-      <div class="row align-items-center g-5">
+      <div class="row align-items-center g-4">
         <div class="col-lg-6">
           <div class="collab-visual">
             <img src="assets/agent2.png" alt="Agent 工程结构图" />
@@ -946,18 +1202,8 @@
         }
       });
 
-      function canScrollWithinPage(deltaY) {
-        const page = pages[currentPage];
-        if (!page || page.scrollHeight <= page.clientHeight + 1) return false;
-        if (deltaY > 0) return page.scrollTop + page.clientHeight < page.scrollHeight - 1;
-        if (deltaY < 0) return page.scrollTop > 1;
-        return false;
-      }
-
       document.addEventListener("wheel", e => {
         if (wheelLocked || isAnimating) return;
-
-        if (canScrollWithinPage(e.deltaY)) return;
 
         if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
           if (e.deltaX > 30 && currentPage < pages.length - 1) {
