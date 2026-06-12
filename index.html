@@ -18,22 +18,29 @@
       --body: #4F5665;
       --section-bg: #F8F8F8;
       --card-shadow: 0 8px 24px rgba(15, 19, 42, 0.08);
+      --page-height: 100dvh;
+      --page-width: 100%;
+      --section-padding-y: 2rem;
+      --section-padding-x: clamp(0.75rem, 1.5vw, 1.25rem);
+      --content-max-width: min(96vw, 1520px);
     }
 
     html, body {
+      width: 100%;
       height: 100%;
       margin: 0;
+      overflow: hidden;
     }
 
     body {
       font-family: "Rubik", sans-serif;
       color: var(--body);
-      overflow: hidden;
     }
 
     /* ── Full-page pagination ── */
     .pages-viewport {
-      height: 100vh;
+      width: var(--page-width);
+      height: var(--page-height);
       overflow: hidden;
       position: relative;
     }
@@ -47,9 +54,9 @@
     }
 
     .page {
-      flex: 0 0 100vw;
-      width: 100vw;
-      height: 100vh;
+      flex: 0 0 var(--page-width);
+      width: var(--page-width);
+      height: var(--page-height);
       overflow: hidden;
     }
 
@@ -118,86 +125,6 @@
       }
     }
 
-    /* ── Navbar ── */
-    .report-nav {
-      background: #fff;
-      box-shadow: 0 4px 20px rgba(15, 19, 42, 0.06);
-      padding: 1rem 0;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-    }
-
-    .report-nav .brand {
-      font-weight: 700;
-      font-size: 1.25rem;
-      color: var(--navy);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .report-nav .brand img {
-      height: 32px;
-    }
-
-    .report-nav .nav-link {
-      color: var(--body);
-      font-weight: 500;
-      padding: 0.4rem 1rem !important;
-      border-radius: 50px;
-      transition: color 0.2s, background 0.2s;
-    }
-
-    .report-nav .nav-link:hover,
-    .report-nav .nav-link.active {
-      color: var(--coral);
-      background: rgba(245, 56, 56, 0.08);
-    }
-
-    /* ── Navbar ── */
-    .report-nav {
-      background: #fff;
-      box-shadow: 0 4px 20px rgba(15, 19, 42, 0.06);
-      padding: 1rem 0;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-    }
-
-    .report-nav .brand {
-      font-weight: 700;
-      font-size: 1.25rem;
-      color: var(--navy);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .report-nav .brand img {
-      height: 32px;
-    }
-
-    .report-nav .nav-link {
-      color: var(--body);
-      font-weight: 500;
-      padding: 0.4rem 1rem !important;
-      border-radius: 50px;
-      transition: color 0.2s, background 0.2s;
-    }
-
-    .report-nav .nav-link:hover,
-    .report-nav .nav-link.active {
-      color: var(--coral);
-      background: rgba(245, 56, 56, 0.08);
-    }
-
     .btn-coral {
       background: var(--coral);
       color: #fff;
@@ -223,9 +150,24 @@
     /* ── Section ── */
     .section {
       box-sizing: border-box;
-      height: 100vh;
-      padding: calc(72px + 1.5rem) 0 2rem;
+      height: 100%;
+      padding: var(--section-padding-y) var(--section-padding-x);
       overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .section > .container {
+      width: 100%;
+      max-width: var(--content-max-width);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .section .row {
+      --bs-gutter-x: 1.25rem;
     }
 
     .section-alt {
@@ -308,7 +250,8 @@
     }
 
     .workflow--hero .workflow-step {
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.15rem;
+      gap: 1.25rem;
     }
 
     .workflow--hero .workflow-step:last-child {
@@ -317,6 +260,7 @@
 
     .workflow--hero .step-content {
       max-width: 100%;
+      padding: 1rem 1.25rem;
     }
 
     .workflow--hero .workflow-step,
@@ -392,7 +336,7 @@
       flex: 1;
       background: #fff;
       border-radius: 12px;
-      padding: 1.25rem 1.5rem;
+      padding: 0.9rem 1.15rem;
       box-shadow: var(--card-shadow);
       max-width: 420px;
     }
@@ -453,10 +397,10 @@
 
     .agent-card .agent-img {
       width: 100%;
-      height: 180px;
+      height: 140px;
       object-fit: contain;
       background: linear-gradient(180deg, #f9fafd 0%, #fff 100%);
-      padding: 0.75rem 1rem;
+      padding: 20px 0.75rem 0.5rem;
     }
 
     .agent-card .agent-body {
@@ -584,41 +528,93 @@
       border-radius: 50%;
       background: var(--coral);
     }
+
+    #workflow .row {
+      margin-bottom: 0 !important;
+      --bs-gutter-x: 5rem;
+      --bs-gutter-y: 2rem;
+    }
+
+    #workflow .section-title {
+      margin-bottom: 1rem;
+    }
+
+    #workflow .intro-text {
+      line-height: 1.85;
+      margin-bottom: 2rem;
+    }
+
+    #workflow .stats-bar {
+      margin-bottom: 0;
+      padding: 2.25rem 1.75rem;
+    }
+
+    #workflow .stat-item {
+      padding: 0.75rem 0.5rem;
+    }
+
+    .workflow--hero .step-content h4 {
+      margin-bottom: 0.5rem;
+    }
+
+    .workflow--hero .step-capabilities {
+      margin-top: 0.85rem;
+    }
+
+    #agents .section-header--left {
+      margin-bottom: 1.25rem !important;
+    }
+
+    #agents .row.g-4 {
+      margin-bottom: 1.25rem !important;
+    }
+
+    @media (max-height: 800px) {
+      :root {
+        --section-padding-y: 1.25rem;
+      }
+
+      .section-title {
+        font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+        margin-bottom: 0.5rem;
+      }
+
+      .workflow--hero .workflow-step {
+        margin-bottom: 0.9rem;
+      }
+
+      #workflow .row {
+        --bs-gutter-x: 3.5rem;
+      }
+
+      #workflow .intro-text {
+        margin-bottom: 1.5rem;
+      }
+
+      .step-content {
+        padding: 0.65rem 0.9rem;
+      }
+
+      .step-content h4 {
+        font-size: 0.92rem;
+      }
+
+      .step-content p {
+        font-size: 0.82rem;
+        line-height: 1.45;
+      }
+
+      .stats-bar {
+        padding: 1.25rem 1rem;
+      }
+
+      .agent-card .agent-img {
+        height: 110px;
+      }
+    }
   </style>
 </head>
 <body>
-
-  <!-- Navbar -->
-  <nav class="report-nav">
-    <div class="container">
-      <div class="d-flex align-items-center justify-content-between">
-        <a class="brand" href="#">
-          <img src="assets/img/icons/logo.png" alt="Logo" />
-          自动化测试
-        </a>
-        <ul class="nav d-none d-md-flex gap-1 mb-0 list-unstyled">
-          <li><a class="nav-link active" href="#workflow">任务闭环</a></li>
-          <li><a class="nav-link" href="#agents">多 Agent 协作</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Navbar -->
-  <nav class="report-nav">
-    <div class="container">
-      <div class="d-flex align-items-center justify-content-between">
-        <a class="brand" href="#">
-          <img src="assets/img/icons/logo.png" alt="Logo" />
-          自动化测试
-        </a>
-        <ul class="nav d-none d-md-flex gap-1 mb-0 list-unstyled">
-          <li><a class="nav-link active" href="#workflow">任务闭环</a></li>
-          <li><a class="nav-link" href="#agents">多 Agent 协作</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
   <div class="pages-viewport" id="pagesViewport">
     <div class="pages-track" id="pagesTrack">
@@ -626,14 +622,14 @@
   <!-- Page 1: Task Closed Loop -->
   <section class="page section" id="workflow" data-page="0">
     <div class="container">
-      <div class="row align-items-center g-5 mb-5">
+      <div class="row align-items-center g-5">
         <div class="col-lg-5">
           <span class="page-pill"><span class="dot"></span>AI 自动化测试</span>
           <h2 class="section-title">端到端任务闭环</h2>
-          <p style="line-height:1.8; margin-bottom:1.5rem;">
+          <p class="intro-text">
             AI 驱动的自动化测试是利用多模态大模型实现用例自动生成、元素智能识别、用例动态优化的新一代自动化测试体系。从需求输入到反馈回流，Agent 调度各阶段任务，Skills 注入领域知识，MCP 驱动浏览器视觉定位。
           </p>
-          <div class="stats-bar" style="margin-bottom:0;">
+          <div class="stats-bar">
             <div class="row g-3">
               <div class="col-6">
                 <div class="stat-item">
@@ -829,20 +825,16 @@
       const track = document.getElementById("pagesTrack");
       const prevBtn = document.getElementById("prevPage");
       const nextBtn = document.getElementById("nextPage");
-      const navLinks = document.querySelectorAll(".report-nav .nav-link");
-
       let currentPage = 0;
       let isAnimating = false;
       let wheelLocked = false;
 
+      const viewport = document.getElementById("pagesViewport");
+
       function updateUI() {
-        track.style.transform = "translateX(-" + currentPage * 100 + "vw)";
+        track.style.transform = "translateX(-" + currentPage * viewport.clientWidth + "px)";
         prevBtn.disabled = currentPage === 0;
         nextBtn.disabled = currentPage === pages.length - 1;
-        navLinks.forEach(link => {
-          const target = link.getAttribute("href").slice(1);
-          link.classList.toggle("active", pages[currentPage].id === target);
-        });
       }
 
       function goToPage(index) {
@@ -858,15 +850,6 @@
 
       prevBtn.addEventListener("click", prevPage);
       nextBtn.addEventListener("click", nextPage);
-
-      navLinks.forEach(link => {
-        link.addEventListener("click", e => {
-          e.preventDefault();
-          const id = link.getAttribute("href").slice(1);
-          const idx = pages.findIndex(p => p.id === id);
-          if (idx >= 0) goToPage(idx);
-        });
-      });
 
       document.addEventListener("keydown", e => {
         if (e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") {
@@ -937,6 +920,7 @@
         else prevPage();
       }, { passive: true });
 
+      window.addEventListener("resize", updateUI);
       updateUI();
     })();
   </script>
